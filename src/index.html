@@ -11,12 +11,23 @@
     <aside class="cursor"></aside>
     <aside class="modal">
       <div class="modal__button">
-        <button class="modal__close">
+        <button class="modal__close" data-tip="Закрыть">
           <span class="modal__close-line modal__close-line--first"></span>
           <span class="modal__close-line modal__close-line--middle"></span>
           <span class="modal__close-line modal__close-line--last"></span>
         </button>
       </div>
+    </aside>
+    <aside class="success">
+      <div class="success__button">
+        <button class="success__close" data-tip="Закрыть">
+          <span class="success__close-line success__close-line--first"></span>
+          <span class="success__close-line success__close-line--middle"></span>
+          <span class="success__close-line success__close-line--last"></span>
+        </button>
+      </div>
+      <div class="success__title">Спасибо!</div>
+      <div class="success__text">Я свяжусь с вами в ближайшее время</div>
     </aside>
     <heade class="header">
       <div class="header__container container">
@@ -35,10 +46,10 @@
             <p class="menu__desktop-title">МЕНЮ.</p>
             <div class="menu__desktop-list" data-text="PAVEL GNEDKOV">
               <a class="menu__desktop-element" data-anchor-number="education" href="#education">Образование</a>
-              <a class="menu__desktop-element" data-anchor-number="2">Проекты</a>
-              <a class="menu__desktop-element" data-anchor-number="3">CASES</a>
-              <a class="menu__desktop-element" data-anchor-number="4">Новости</a>
-              <a class="menu__desktop-element" data-anchor-number="5">Что я могу для вас</a>
+              <a class="menu__desktop-element" data-anchor-number="2" href="#projects">Проекты</a>
+              <a class="menu__desktop-element" data-anchor-number="3" href="#cases">CASES</a>
+              <a class="menu__desktop-element" data-anchor-number="4" href="#news">Новости</a>
+              <a class="menu__desktop-element" data-anchor-number="5" href="#help">Что я могу для вас</a>
             </div>
             <div class="menu__desktop-contacts"></div>
           </div>
@@ -56,12 +67,12 @@
         <p class="pagination__number" data-number="7">07</p>
         <p class="pagination__number" data-number="8">08</p>
         <p class="pagination__number" data-number="9">09</p>
-        <p class="pagination__text">
+        <button class="pagination__text">
           SCROLL
           <svg class="pagination__arrow" width="31" height="14" viewBox="0 0 31 14" xmlns="http://www.w3.org/2000/svg" fill="none">
             <path d="M24.413 9.161h-23.913v-4.321h23.913v-3.339l6.087 5.5-6.087 5.5v-3.339z" stroke="#111" stroke-width=".5" />
           </svg>
-        </p>
+        </button>
       </div>
     </aside>
     <div id="fullpage">
@@ -102,12 +113,12 @@
               </a>
             </div>
           </div>
-          <div class="who__avatar">
-            <div class="who__avatar-blend"></div>
-            <picture class="who__avatar-picture">
-              <img class="who__avatar-img" src="assets/images/avatar.jpg" alt="" />
+          <div class="avatar">
+            <div class="avatar__blend"></div>
+            <picture class="avatar__picture">
+              <img class="avatar__img" src="assets/images/avatar.jpg" alt="" />
             </picture>
-            <svg class="who__avatar-icon" width="245" height="246" viewBox="0 0 245 246" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <svg class="avatar__icon" width="245" height="246" viewBox="0 0 245 246" xmlns="http://www.w3.org/2000/svg" fill="none">
               <path
                 d="M115.481 26.937l9.147.779c2.232.19 4.177.797 5.836 1.822 1.661 1.005 2.902 2.345 3.723 4.02.822 1.656 1.145 3.52.969 5.592-.177 2.072-.811 3.865-1.904 5.378-1.09 1.493-2.54 2.604-4.348 3.333-1.807.709-3.826.969-6.058.779l-9.147-.779 1.782-20.924zm7.465 18.4c1.535.131 2.905-.044 4.11-.523 1.226-.498 2.194-1.258 2.904-2.282.731-1.042 1.157-2.28 1.28-3.715.122-1.435-.09-2.717-.636-3.848-.524-1.149-1.35-2.062-2.476-2.74-1.105-.696-2.425-1.11-3.959-1.241l-5.082-.433-1.222 14.348 5.081.433zM154.371 33.092l3.558 1.598-8.602 19.157-3.557-1.598 8.601-19.157zM180.137 60.856l2.709 2.506-5.683 6.145c-1.377-.102-2.75-.473-4.12-1.113-1.369-.64-2.612-1.476-3.728-2.508-1.571-1.453-2.676-3.101-3.314-4.945-.624-1.858-.739-3.722-.345-5.591.394-1.869 1.29-3.56 2.689-5.073 1.399-1.512 3.015-2.538 4.848-3.076 1.833-.539 3.693-.562 5.58-.069 1.916.491 3.667 1.47 5.253 2.937 1.292 1.195 2.269 2.494 2.933 3.898.663 1.404.974 2.849.933 4.337l-3.435.092c-.089-2.261-.962-4.159-2.622-5.693-1.086-1.005-2.266-1.674-3.538-2.006-1.258-.319-2.51-.291-3.755.083-1.23.388-2.334 1.11-3.312 2.167-.95 1.028-1.571 2.17-1.862 3.427-.276 1.27-.212 2.528.19 3.771.417 1.258 1.162 2.382 2.233 3.373 1.204 1.114 2.506 1.827 3.905 2.14l4.441-4.801zM202.128 70.629l1.871 3.422-18.427 10.074-1.87-3.422 18.426-10.074zM210.648 96.91l-1.434-6.811 3.23-.68 3.67 17.438-3.229.679-1.434-6.811-17.32 3.646-.804-3.816 17.321-3.646zM200.243 135.655l1.683-10.364-4.465-2.823.645-3.968 19.213 12.694-.615 3.791-22.248 5.991.654-4.027 5.133-1.294zm3.228-.783l9.696-2.437-8.432-5.351-1.264 7.788zM210.363 160.649l-1.966 3.368-15.288-8.92-5.533 9.484-2.851-1.663 7.5-12.853 18.138 10.584zM151.029 191.182l5.768 12.669 1.535-13.34 1.585-.718 10.963 7.485-5.667-12.517 3.389-1.534 8.661 19.131-2.925 1.324-13.338-9.242-1.72 16.059-2.925 1.324-8.687-19.119 3.361-1.522zM122.018 201.756l10.5.048 2.092-4.851 4.02.019-9.545 20.956-3.84-.017-9.384-21.043 4.08.018 2.077 4.87zm1.276 3.066l3.919 9.198 3.971-9.162-7.89-.036zM93.882 191.187l1.584 7.329c.174.051.427.146.759.285l4.373 1.83 2.362-5.646 3.598 1.505-8.106 19.373-7.971-3.335c-1.679-.702-3.021-1.589-4.025-2.66-1.023-1.078-1.651-2.273-1.883-3.584-.232-1.311-.051-2.677.544-4.098.61-1.457 1.495-2.561 2.654-3.312 1.141-.758 2.484-1.118 4.028-1.079l-1.793-8.229 3.874 1.621zm-5.139 12.516c-.517 1.236-.509 2.357.025 3.36.534 1.004 1.585 1.834 3.153 2.49l4.207 1.76 3.231-7.721-4.207-1.76c-1.568-.656-2.897-.822-3.987-.497-1.097.343-1.905 1.132-2.422 2.368zM68.579 186.129l4.773-.076 3.787-3.807 2.765 2.751-14.811 14.887-2.765-2.75 7.596-7.635-14.954.314-3.105-3.089 12.875-.436 1.553-14.832 3.233 3.216-.946 11.457zM50.315 150.935l2.999-1.303 6.278 14.445-19.26 8.37-6.11-14.06 2.999-1.303 4.556 10.483 5.008-2.176-4.042-9.3 2.944-1.279 4.042 9.299 5.31-2.308-4.723-10.868zM31.279 135.674l.397 6.949-3.295.188-1.015-17.791 3.295-.188.397 6.948 17.671-1.008.222 3.893-17.671 1.009zM28.258 107.833l.927-3.788 20.398 4.994-.927 3.788-20.397-4.994zM44.36 68.581l17.7 11.302-1.728 2.705-18.217 2.107 11.985 7.653-2.083 3.262-17.7-11.302 1.728-2.706 18.217-2.107-11.985-7.653 2.083-3.262zM74.886 52.701l3.051-2.075 4.706 6.922c-.41 1.318-1.081 2.573-2.013 3.763-.932 1.19-2.027 2.212-3.284 3.067-1.77 1.203-3.624 1.908-5.564 2.114-1.951.19-3.793-.118-5.525-.923-1.733-.805-3.178-2.06-4.336-3.763-1.158-1.704-1.793-3.509-1.905-5.416-.112-1.907.285-3.725 1.19-5.453.91-1.756 2.259-3.241 4.045-4.455 1.455-.99 2.942-1.649 4.459-1.979 1.517-.33 2.995-.307 4.436.068l-.685 3.368c-2.223-.424-4.269 0-6.138 1.271-1.224.832-2.141 1.831-2.752 2.996-.594 1.154-.849 2.379-.765 3.676.101 1.286.556 2.525 1.365 3.715.787 1.158 1.76 2.02 2.919 2.586 1.175.555 2.415.777 3.717.665 1.319-.123 2.582-.595 3.79-1.416 1.356-.922 2.345-2.029 2.965-3.322l-3.677-5.408z"
                 fill="#111"
@@ -237,7 +248,7 @@
           </div>
         </div>
       </section>
-      <section class="projects section" data-section-number="4">
+      <section class="projects section" id="projects" data-section-number="4">
         <div class="projects__container container">
           <div class="projects__theme">
             <p class="projects__theme-title">Проекты</p>
@@ -314,7 +325,7 @@
           </ul>
         </div>
       </section>
-      <section class="cases section" data-section-number="5">
+      <section class="cases section" id="cases" data-section-number="5">
         <div class="cases__container container">
           <p class="title title--first">DIGITAL</p>
           <p class="title title--second">MARKETING CASES</p>
@@ -393,7 +404,7 @@
           </div>
         </div>
       </section>
-      <section class="gallery section active" data-section-number="6">
+      <section class="gallery section" data-section-number="6">
         <div class="gallery__container container">
           <p class="title">ГАЛЕРЕЯ</p>
           <div class="gallery__inner">
@@ -491,8 +502,219 @@
           </div>
         </div>
       </section>
-      <section class="news section active" data-section-number="7">
-        <div class="news__container container"></div>
+      <section class="news section" id="news" data-section-number="7">
+        <div class="news__container container">
+          <div class="news__names">
+            <button class="news__name" data-type="news">НОВОСТИ.</button>
+            <button class="news__name" data-type="media">СМИ.</button>
+            <button class="news__name" data-type="blog">БЛОГ</button>
+          </div>
+          <div class="news__list news__list--active" data-type="news">
+            <div class="news__box">
+              <p class="news__title">ЗАГОЛОВОК</p>
+              <div class="news__text">
+                <p class="news__p">On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized.</p>
+                <a class="link" href="#">
+                  ЧИТать
+                  <svg width="22" height="9" viewBox="0 0 22 9" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path d="M16.942 5.875h-15.942v-2.75h15.942v-2.125l4.058 3.5-4.058 3.5v-2.125z" stroke="#111" stroke-width=".5" />
+                  </svg>
+                </a>
+              </div>
+              <img class="news__img" src="assets/images/news.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="news__box">
+              <p class="news__title">ЗАГОЛОВОК</p>
+              <div class="news__text">
+                <p class="news__p">On the other hand, we denounce with righteous.</p>
+                <a class="link" href="#">
+                  ЧИТать
+                  <svg width="22" height="9" viewBox="0 0 22 9" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path d="M16.942 5.875h-15.942v-2.75h15.942v-2.125l4.058 3.5-4.058 3.5v-2.125z" stroke="#111" stroke-width=".5" />
+                  </svg>
+                </a>
+              </div>
+              <img class="news__img" src="assets/images/news-2.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="news__box">
+              <p class="news__title">ЗАГОЛОВОК</p>
+              <div class="news__text">
+                <p class="news__p">On the other hand, we denounce with righteous.</p>
+                <a class="link" href="#">
+                  ЧИТать
+                  <svg width="22" height="9" viewBox="0 0 22 9" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path d="M16.942 5.875h-15.942v-2.75h15.942v-2.125l4.058 3.5-4.058 3.5v-2.125z" stroke="#111" stroke-width=".5" />
+                  </svg>
+                </a>
+              </div>
+              <img class="news__img" src="assets/images/news-2.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="news__box">
+              <p class="news__title">ЗАГОЛОВОК</p>
+              <div class="news__text">
+                <p class="news__p">On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized.</p>
+                <a class="link" href="#">
+                  ЧИТать
+                  <svg width="22" height="9" viewBox="0 0 22 9" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path d="M16.942 5.875h-15.942v-2.75h15.942v-2.125l4.058 3.5-4.058 3.5v-2.125z" stroke="#111" stroke-width=".5" />
+                  </svg>
+                </a>
+              </div>
+              <img class="news__img" src="assets/images/news-2.jpg" alt="" loading="lazy" />
+            </div>
+          </div>
+          <div class="news__list" data-type="media">
+            <div class="news__box">
+              <p class="news__title">ЗАГОЛОВОК</p>
+              <div class="news__text">
+                <p class="news__p">On the other hand, we denounce with righteous.</p>
+                <a class="link" href="#">
+                  ЧИТать
+                  <svg width="22" height="9" viewBox="0 0 22 9" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path d="M16.942 5.875h-15.942v-2.75h15.942v-2.125l4.058 3.5-4.058 3.5v-2.125z" stroke="#111" stroke-width=".5" />
+                  </svg>
+                </a>
+              </div>
+              <img class="news__img" src="assets/images/news-2.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="news__box">
+              <p class="news__title">ЗАГОЛОВОК</p>
+              <div class="news__text">
+                <p class="news__p">On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized.</p>
+                <a class="link" href="#">
+                  ЧИТать
+                  <svg width="22" height="9" viewBox="0 0 22 9" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path d="M16.942 5.875h-15.942v-2.75h15.942v-2.125l4.058 3.5-4.058 3.5v-2.125z" stroke="#111" stroke-width=".5" />
+                  </svg>
+                </a>
+              </div>
+              <img class="news__img" src="assets/images/news-2.jpg" alt="" loading="lazy" />
+            </div>
+          </div>
+          <div class="news__list" data-type="blog">
+            <div class="news__box">
+              <p class="news__title">ЗАГОЛОВОК</p>
+              <div class="news__text">
+                <p class="news__p">On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized.</p>
+                <a class="link" href="#">
+                  ЧИТать
+                  <svg width="22" height="9" viewBox="0 0 22 9" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path d="M16.942 5.875h-15.942v-2.75h15.942v-2.125l4.058 3.5-4.058 3.5v-2.125z" stroke="#111" stroke-width=".5" />
+                  </svg>
+                </a>
+              </div>
+              <img class="news__img" src="assets/images/news-2.jpg" alt="" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="help section" id="help" data-section-number="8">
+        <div class="help__container container">
+          <div class="help__title">Что могу для вашего бизнеса?</div>
+          <div class="help__block">
+            <div class="help__box help__box--green">
+              <p class="help__box-tag">VK</p>
+              <p class="help__box-title">On the other hand, we denounce with righteous indignation</p>
+              <p class="help__box-text">
+                On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized.
+              </p>
+              <a class="link" href="#">
+                ЧИТать
+                <svg width="22" height="9" viewBox="0 0 22 9" xmlns="http://www.w3.org/2000/svg" fill="none">
+                  <path d="M16.942 5.875h-15.942v-2.75h15.942v-2.125l4.058 3.5-4.058 3.5v-2.125z" stroke="#111" stroke-width=".5" />
+                </svg>
+              </a>
+            </div>
+            <div class="help__box help__box--violet">
+              <p class="help__box-tag">Digital</p>
+              <p class="help__box-title">On the other hand</p>
+              <p class="help__box-text">
+                On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized.
+              </p>
+              <a class="link" href="#">
+                ЧИТать
+                <svg width="22" height="9" viewBox="0 0 22 9" xmlns="http://www.w3.org/2000/svg" fill="none">
+                  <path d="M16.942 5.875h-15.942v-2.75h15.942v-2.125l4.058 3.5-4.058 3.5v-2.125z" stroke="#111" stroke-width=".5" />
+                </svg>
+              </a>
+            </div>
+            <div class="help__box help__box--orange">
+              <p class="help__box-tag">business</p>
+              <p class="help__box-title">On the other hand</p>
+              <p class="help__box-text">On the other hand, we denounce with righteous indignation.</p>
+              <a class="link" href="#">
+                ЧИТать
+                <svg width="22" height="9" viewBox="0 0 22 9" xmlns="http://www.w3.org/2000/svg" fill="none">
+                  <path d="M16.942 5.875h-15.942v-2.75h15.942v-2.125l4.058 3.5-4.058 3.5v-2.125z" stroke="#111" stroke-width=".5" />
+                </svg>
+              </a>
+            </div>
+            <div class="help__box help__box--blue">
+              <p class="help__box-tag">marketing</p>
+              <p class="help__box-title">On the other hand, we denounce with righteous indignation</p>
+              <p class="help__box-text">
+                On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized.
+              </p>
+              <a class="link" href="#">
+                ЧИТать
+                <svg width="22" height="9" viewBox="0 0 22 9" xmlns="http://www.w3.org/2000/svg" fill="none">
+                  <path d="M16.942 5.875h-15.942v-2.75h15.942v-2.125l4.058 3.5-4.058 3.5v-2.125z" stroke="#111" stroke-width=".5" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="contact section" data-section-number="9">
+        <div class="contact__container container">
+          <div class="avatar">
+            <div class="avatar__blend"></div>
+            <picture class="avatar__picture">
+              <img class="avatar__img" src="assets/images/avatar.jpg" alt="" loading="lazy" />
+            </picture>
+          </div>
+          <form class="contact__form" id="contact" method="GET">
+            <p class="contact__title">Свяжитесь со <span class="contact__title-white">мной</span></p>
+            <div class="contact__form-input-wrapper">
+              <input class="contact__form-input" type="text" placeholder="Имя" required />
+            </div>
+            <div class="contact__form-input-wrapper contact__form-input-wrapper--phone" data-text-error="Текст ошибки">
+              <input class="contact__form-input" type="text" placeholder="Телефон" required />
+              <svg
+                class="contact__form-input-icon contact__form-input-icon--success"
+                width="11"
+                height="9"
+                viewBox="0 0 11 9"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M3.805 6.195l6.195-6.195.943.943-7.138 7.138-3.805-3.805.943-.943 2.862 2.862z"
+                  fill="#111"
+                />
+              </svg>
+              <svg
+                class="contact__form-input-icon contact__form-input-icon--error"
+                width="15"
+                height="15"
+                viewBox="0 0 15 15"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M7.333 14.667c-4.05 0-7.333-3.283-7.333-7.333 0-4.05 3.283-7.333 7.333-7.333 4.05 0 7.333 3.283 7.333 7.333 0 4.05-3.283 7.333-7.333 7.333zm0-1.333c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zm-2.195-2.862l2.195-2.195 2.195 2.195.943-.943-2.195-2.195 2.195-2.195-.943-.943-2.195 2.195-2.195-2.195-.943.943 2.195 2.195-2.195 2.195.943.943z"
+                  fill="#111"
+                />
+              </svg>
+            </div>
+            <button class="contact__form-submit">ОТПРАВИТЬ.</button>
+            <p class="contact__text">Pavel <span class="contact__text-bold">Gnedkov</span>. All right reserved.</p>
+          </form>
+        </div>
       </section>
     </div>
     <script src="assets/js/main.min.js"></script>

@@ -2,16 +2,19 @@
 
 document.onreadystatechange = function () {
     if (document.readyState === "interactive") {
-        if (document.documentElement.clientWidth <= 700) {
+        if (document.documentElement.clientWidth <= 700 || document.documentElement.clientHeight <= 750) {
             document.querySelector('.menu__desktop-contacts').insertAdjacentElement('beforeend', document.querySelector('.who__socials'))
+        }
+        if (document.documentElement.clientWidth <= 700) {
             document.querySelector('.menu__desktop-contacts').insertAdjacentElement('beforeend', document.querySelector('.header__contact--phone'))
             document.querySelector('.menu__desktop').insertAdjacentElement('beforeend', document.querySelector('.header__contact--mail'))
-            document.querySelector('body').insertAdjacentElement("afterbegin", document.querySelector('.who__avatar-icon'))
+            document.querySelector('body').insertAdjacentElement("afterbegin", document.querySelector('.avatar__icon'))
             for (const element of document.querySelectorAll('.who__achieving')) {
                 document.querySelector('.about').insertAdjacentElement('afterend', element)
                 element.classList.add('who__achieving--visible')
             }
         }
+
         document.documentElement.clientWidth <= 500
             && document.querySelectorAll('.education__slider .swiper-slide').forEach((slide, index) => {
                 slide.insertAdjacentElement("beforeend", document.querySelector(`.education__text[data-number-text="${index + 1}"]`))
@@ -29,7 +32,7 @@ window.addEventListener("load", function () {
         $aboutText = document.querySelector('.about__text'),
         $$menuDesktopElement = document.querySelectorAll('.menu__desktop-element'),
         $headerButton = document.querySelector('.header__button'),
-        $whoAvatarIcon = document.querySelector('.who__avatar-icon'),
+        $whoAvatarIcon = document.querySelector('.avatar__icon'),
         $$educationSliderSwiperSlide = document.querySelectorAll('.education__slider .swiper-slide'),
         $$educationText = document.querySelectorAll('.education__text'),
         $education = document.querySelector('.education'),
@@ -51,7 +54,18 @@ window.addEventListener("load", function () {
         $modalButton = document.querySelector('.modal__button'),
         $galleryInner = document.querySelector('.gallery__inner'),
         $galleryPagination = document.querySelector('.gallery__pagination'),
-        $swiperButtons = document.querySelector('.swiper-buttons');
+        $swiperButtons = document.querySelector('.swiper-buttons'),
+        $news = document.querySelector('.news'),
+        $$newsName = document.querySelectorAll('.news__name'),
+        $help = document.querySelector('.help'),
+        $contact = document.querySelector('.contact'),
+        $contactText = document.querySelector('.contact__text'),
+        $menuDesktopContacts = document.querySelector('.menu__desktop-contacts'),
+        $contactForm = document.getElementById('contact'),
+        $success = document.querySelector('.success'),
+        $successClose = document.querySelector('.success__close'),
+        $paginationText = document.querySelector('.pagination__text'),
+        $menuDesktop = document.querySelector('.menu__desktop');
     // /selecror
     // /variables
     // ----------------------------------------------
@@ -59,29 +73,32 @@ window.addEventListener("load", function () {
     function isTouchDevice() {
         return 'ontouchstart' in window
             || navigator.maxTouchPoints;
-    };
-    // function ajaxRequest(ajaxForm, url) {
-    //     try {
-    //         history.replaceState(null, null, "#")
-    //     } catch (z) {
-    //         console.log(z)
-    //     }
-    //     $.ajax({
-    //         url: url,
-    //         type: "POST",
-    //         dataType: "html",
-    //         data: $("#" + ajaxForm).serialize(), // Сеарилизуем объект
-    //         success: function (response) {
-    //             //Данные отправлены успешно
-    //             let result = $.parseJSON(response)
-    //             console.log(result)
-    //         },
-    //         error: function (response) {
-    //             // Данные не отправлены
-    //             alert("Ошибка. Данные не отправлены.")
-    //         },
-    //     })
-    // }
+    }
+    function ajaxRequest(ajaxForm, url) {
+        try {
+            history.replaceState(null, null, "#")
+        } catch (z) {
+            console.log(z)
+        }
+        var request = new XMLHttpRequest();
+        request.open('GET', 'test.php', true);
+        request.onload = function () {
+            if (this.status >= 200 && this.status < 400) {
+                // Success!
+
+                var resp = this.response;
+            } else {
+                // We reached our target server, but it returned an error
+                $success.classList.add('success--active')
+                // alert('error')
+            }
+        };
+        request.onerror = function () {
+            // There was a connection error of some sort
+            alert('arrow conect')
+        };
+        request.send();
+    }
     //  /universal function
     // ----------------------------------------------
     // event
@@ -171,14 +188,22 @@ window.addEventListener("load", function () {
     for (const slide of $$galleryTopSwiperSlide) {
         slide.addEventListener('click', toggleGallery)
     }
-    $modalButton.addEventListener('click', toggleGallery)
-    // for (const element of $$menuDesktopElement) {
-    //     element.addEventListener('click', function () {
-    //         fullpage_api.silentMoveTo(this.dataset.anchorNumber, 0);
-    //         toggleMenu()
-    //     })
-    // }
-    document.documentElement.clientWidth <= 700 && window.addEventListener('scroll', (e) => {
+    for (const button of $$newsName) {
+        button.addEventListener('click', () => {
+            document.querySelector('.news__list--active').classList.remove('news__list--active')
+            document.querySelector(`.news__list[data-type="${button.dataset.type}"]`).classList.add('news__list--active')
+        })
+    }
+    $paginationText.addEventListener('click', () => {
+        fullpage_api.moveSectionDown();
+    })
+    $successClose.addEventListener('click', () => {
+        $success.classList.toggle('success--active')
+    })
+    $modalButton.addEventListener('click', toggleGallery);
+
+
+    (document.documentElement.clientWidth <= 700 || document.documentElement.clientHeight <= 750) && window.addEventListener('scroll', (e) => {
         if ($education.getBoundingClientRect().y - document.documentElement.clientHeight + 40 <= 0) {
             $education.classList.add('education--active')
             for (const slide of $$educationSliderSwiperSlide) {
@@ -205,12 +230,37 @@ window.addEventListener("load", function () {
         } else {
             $gallery.classList.remove('gallery--active')
         }
+        if ($news.getBoundingClientRect().y - document.documentElement.clientHeight + 40 <= 0) {
+            $news.classList.add('news--active')
+        } else {
+            $news.classList.remove('news--active')
+        }
+        if ($help.getBoundingClientRect().y - document.documentElement.clientHeight + 40 <= 0) {
+            $help.classList.add('help--active')
+        } else {
+            $help.classList.remove('help--active')
+        }
+        if ($contact.getBoundingClientRect().y - document.documentElement.clientHeight + 40 <= 0) {
+            $contact.classList.add('contact--active')
+        } else {
+            $contact.classList.remove('contact--active')
+            $contact.insert
+        }
     })
-    // for(const element of $$menuDesktopElement){
-    //     element.addEventListener('click', ()=>{
+    $$menuDesktopElement.forEach((element, index) => {
+        element.addEventListener('click', () => {
+            if (document.documentElement.clientWidth > 700) {
+                index === 0 && fullpage_api.silentMoveTo(3);
+                index === 1 && fullpage_api.silentMoveTo(4);
+                index === 2 && fullpage_api.silentMoveTo(5);
+                index === 3 && fullpage_api.silentMoveTo(7);
+                index === 4 && fullpage_api.silentMoveTo(8);
+            } else {
 
-    //     })
-    // }
+            }
+            toggleMenu();
+        })
+    })
 
     $menuBurger.addEventListener('click', toggleMenu)
 
@@ -234,25 +284,34 @@ window.addEventListener("load", function () {
 
 
     // forms
-    // $("#registration-form").on("input, submit", (e) => {
-    //     e.preventDefault()
-    //     ajaxRequest("registration-form", "test.php")
-    // })
+    $contactForm.addEventListener("submit", (e) => {
+        e.preventDefault()
+        ajaxRequest("contact", "test.php")
+    })
     // /forms
     // /event
     // ----------------------------------------------
     // unique function
     function toggleMenu() {
         $menu.classList.toggle('menu--open')
-        setTimeout(() => {
+        if ($menu.classList.contains('menu--open')) {
+            setTimeout(() => {
+                for (const element of $$menuDesktopElement) {
+                    element.classList.toggle('menu__desktop-element--wrap')
+                }
+                $menuDesktop.classList.toggle('menu__desktop--auto')
+            }, 1500)
+        } else {
             for (const element of $$menuDesktopElement) {
                 element.classList.toggle('menu__desktop-element--wrap')
             }
-        }, 1500)
+            $menuDesktop.classList.toggle('menu__desktop--auto')
+        }
+
         document.documentElement.clientWidth <= 700 && (
             document.querySelector('body').classList.toggle('block'),
             $headerButton.classList.toggle('header__button--white'),
-            $whoAvatarIcon.classList.toggle('who__avatar-icon--disable')
+            $whoAvatarIcon.classList.toggle('avatar__icon--disable')
         )
     }
     function toggleGallery() {
@@ -276,7 +335,7 @@ window.addEventListener("load", function () {
     // /unique function
     // ----------------------------------------------
     // Page load
-    document.documentElement.clientWidth > 700 && new fullpage('#fullpage', {
+    document.documentElement.clientWidth > 700 && document.documentElement.clientHeight > 750 && new fullpage('#fullpage', {
         autoScrolling: true,
         scrollHorizontally: true,
         // anchors: ['head', 'info', 'education', 'projects'],
@@ -300,6 +359,15 @@ window.addEventListener("load", function () {
                     case 6:
                         destination.item.classList.add('gallery--active')
                         break;
+                    case 7:
+                        destination.item.classList.add('news--active')
+                        break;
+                    case 8:
+                        destination.item.classList.add('help--active')
+                        break;
+                    case 9:
+                        destination.item.classList.add('contact--active')
+                        break;
                 }
                 switch (origin.index + 1) {
                     case 3:
@@ -316,6 +384,15 @@ window.addEventListener("load", function () {
                         break;
                     case 6:
                         origin.item.classList.remove('gallery--active')
+                        break;
+                    case 7:
+                        origin.item.classList.remove('news--active')
+                        break;
+                    case 8:
+                        origin.item.classList.remove('help--active')
+                        break;
+                    case 9:
+                        origin.item.classList.remove('contact--active')
                         break;
                 }
             }, 600)
@@ -340,6 +417,15 @@ window.addEventListener("load", function () {
                         break;
                     case 6:
                         activeSection.classList.add('gallery--active')
+                        break;
+                    case 7:
+                        activeSection.classList.add('news--active')
+                        break;
+                    case 8:
+                        activeSection.classList.add('help--active')
+                        break;
+                    case 9:
+                        activeSection.classList.add('contact--active')
                         break;
                 }
             }
@@ -432,5 +518,7 @@ window.addEventListener("load", function () {
             // }
         }
     });
+    document.documentElement.clientWidth <= 500 && $contactText.insertAdjacentElement('beforebegin', $menuDesktopContacts.cloneNode(true))
     // AOS.init();
+    // OverlayScrollbars(document.querySelectorAll('.projects .container'), { /* your options */ });
 });

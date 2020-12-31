@@ -27,6 +27,7 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.2",
     "gulp-uglify-es": "^2.0.0",
+    "overlayscrollbars": "^1.13.1",
     "swiper": "^6.4.5",
     "typeit": "^7.0.4"
   }

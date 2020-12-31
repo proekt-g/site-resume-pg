@@ -203,6 +203,9 @@
     @media (max-width: 500px) {
       padding: 57px 5px 50px;
     }
+    &--auto {
+      overflow: auto;
+    }
     &-contacts {
       display: flex;
       margin-top: 24px;

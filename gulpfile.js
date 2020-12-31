@@ -31,7 +31,7 @@ function scripts() {
         'node_modules/typeit/dist/typeit.min.js',
         'node_modules/fullpage.js/dist/fullpage.min.js',
         'node_modules/swiper/swiper-bundle.min.js',
-        // 'node_modules/aos/dist/aos.js',
+        // 'node_modules/overlayscrollbars/js/OverlayScrollbars.min.js',
         'src/assets/js/main.js'
     ])
         .pipe(sourcemaps.init())
